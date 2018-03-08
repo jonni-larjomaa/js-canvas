@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Javascript canvas demo</title>
+</head>
+
+<body>
+  <canvas id="scene" width="600" height="400" style="border: 1px solid"></canvas>
+
+  <script type="text/javascript">
+    var c = document.getElementById("scene"),
+    ctx = c.getContext("2d"),
+    cycle = 0;
+
+    var text = ""
+
+    function draw(){
+      if(cycle < 1090)  cycle += 10;
+      else cycle = 340;
+
+      ctx.clearRect(0,0, 600, 400);
+      for( i=0; i < 20; i++){
+
+        var x = 10 + i * 20
+
+        if(x > 790) x = x - 790;
+
+        var y = (125 * Math.sin( (cycle - (i * 20)) / Math.PI * 2)) + 200;
+        ctx.beginPath();
+        ctx.arc(x, y, 10, Math.PI * 2, 0);
+        ctx.closePath();
+        ctx.stroke();
+      }
+      window.requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  </script>
+</body>
+
+</html>
